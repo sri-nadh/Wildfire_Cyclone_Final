@@ -18,8 +18,10 @@ async def detect_objects(file: UploadFile):
   image = np.frombuffer(image_bytes, dtype=np.uint8)
   image = cv2.imdecode(image, cv2.IMREAD_COLOR)
   detections = model.predict(image)
+
+  # storing confidence_value
   confidence_value = detections[0].boxes[0].conf.item()
-  # return confidence_value
+  
   for r in detections:
       boxes = r.boxes
       labels = []
