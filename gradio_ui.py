@@ -13,7 +13,7 @@ def detect_objects(image):
     image_bytes = cv2.imencode('.jpg', image)[1].tobytes()
     image_file = {"file": ("image.jpg", image_bytes, "image/jpeg")}
 
-    response = requests.post("https://ngrok.com/r/k8sgb/detect/", files=image_file)
+    response = requests.post("http://localhost:8000/detect/", files=image_file)
     
     image_array = np.frombuffer(response.content, dtype=np.uint8)
     
